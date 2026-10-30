@@ -1,160 +1,252 @@
 # 🌐 RESONANCE — Federated Traffic Intelligence
 
-### AIORI-3 Hackathon | Problem Statement PS-003
+### AIORI 3 Hackathon | PS-003 — Federated Traffic-Flow Prediction with Communication-Cost Evaluation
 
-**Federated Traffic-Flow Prediction with Communication-Cost Evaluation**
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Team-RESONANCE-blue" />
-  <img src="https://img.shields.io/badge/Python-3.12-blue" />
-  <img src="https://img.shields.io/badge/Framework-PyTorch-orange" />
-  <img src="https://img.shields.io/badge/Dashboard-Streamlit-red" />
-</p>
+**Team:** RESONANCE  
+**Repository:** [A3-PS003-TC141](https://github.com/aiori-hackathon/A3-PS003-TC141)
 
 ---
 
-## 🚀 Project Overview
+## 🚦 Project Overview
 
-RESONANCE explores federated learning for traffic-flow prediction across a network of distributed traffic sensors.
+**Federated Traffic Intelligence** is a communication-aware research platform that explores traffic-flow prediction across distributed sensor networks.
 
-The project compares four approaches:
+The project investigates how different learning approaches perform when traffic sensors are distributed among multiple clients. It compares centralized learning, independent local learning, standard Federated Averaging (FedAvg), and topology-aware federated learning.
 
-- Centralized Neural Network
-- Local-only Learning
-- Standard Federated Averaging (FedAvg)
-- Topology-aware Federated Averaging
+The platform evaluates these approaches using prediction accuracy, training time, and estimated model communication costs.
 
-Our objective is to investigate how different sensor-to-client assignments affect prediction accuracy, training time, and communication cost.
+Our objective is to study the trade-offs between prediction performance, distributed training, and communication overhead.
 
-## 📊 Experiment at a Glance
+## 🎯 Problem Statement
 
-| Parameter | Value |
-|---|---:|
-| Traffic sensors | 36 |
-| Federated clients | 3 |
-| Sensors per client | 12 |
-| Communication rounds | 10 |
-| Input features per sensor | 48 |
+**PS-003: Federated Traffic-Flow Prediction with Communication-Cost Evaluation**
+
+Traditional centralized traffic prediction approaches require data to be collected and processed at a central location. In distributed sensor networks, this can create communication and scalability challenges.
+
+Federated learning offers an alternative by allowing multiple clients to train local models and share model updates instead of directly sharing their training data.
+
+However, how sensors are assigned to clients can influence model performance and communication requirements.
+
+This project investigates these differences through experimental comparisons.
+
+## 🧠 Proposed Approach
+
+We implemented and evaluated four learning approaches:
+
+| Approach | Description |
+|---|---|
+| Centralized Neural Network | Trains one model using data from all sensors. |
+| Local-only Learning | Trains independent models without exchanging model updates. |
+| Standard FedAvg | Uses multiple clients and aggregates their model updates using Federated Averaging. |
+| Topology-aware FedAvg | Uses sensor-network connectivity to create client groups before federated training. |
+
+### Topology-aware Client Partitioning
+
+The traffic network contains 36 sensors connected through an adjacency matrix.
+
+A topology-aware partitioning strategy groups connected sensors into three clients, aiming to preserve more internal network connections within each client.
+
+The resulting partition contains:
+- 36 traffic sensors.
+- 3 federated clients.
+- 12 sensors per client.
+- 43 undirected network connections.
+- 35 internal connections within client groups.
+- 8 connections crossing client boundaries.
+
+**Important:** Network topology is used for client assignment. The prediction model is an MLP neural network, not a Graph Neural Network (GNN).
+
+## 🏗️ System Configuration
+
+| Parameter | Configuration |
+|---|---|
+| Dataset sensors | 36 |
+| Input features | 48 |
 | Prediction horizon | 15 minutes |
-| Prediction model | Multi-Layer Perceptron (MLP) |
+| Federated clients | 3 |
+| Communication rounds | 10 |
+| Local epochs per round | 2 |
+| Neural network | Multilayer Perceptron (MLP) |
+| Optimizer | Adam |
+| Learning rate | 0.001 |
+| Loss function | Mean Squared Error (MSE) |
+| Aggregation | Federated Averaging |
+| Evaluation metrics | MAE and RMSE |
 
-## 🖥️ Interactive Dashboard
+## 📊 Interactive Dashboard
 
-The project includes an interactive Streamlit dashboard for exploring the experiments and their results.
+The Streamlit dashboard provides an interactive view of the experiments, sensor network, federated training process, model performance, and communication analysis.
 
-![Dashboard Overview](docs/images/dashboard_overview.png)
+### Dashboard Overview
 
-### Dashboard Features
+![Dashboard Overview](docs/images/Dashboard_overview.png)
 
-- Project overview and experiment statistics
-- Interactive sensor network visualization
-- Federated training and convergence analysis
-- Model performance comparison
-- Communication cost analysis
+### Sensor Network Topology
 
-## 🕸️ Sensor Network Topology
+The network visualization represents the 36 sensors and their client assignments. Different colors identify the three federated clients, while edge colors distinguish internal and cross-client connections.
 
-The dataset contains 36 traffic sensors connected through an adjacency matrix.
+![Sensor Network](docs/images/sensor_network.png)
 
-The topology-aware approach groups connected sensors into three federated clients.
+### Model Performance Comparison
 
-- Blue: Client 1
-- Yellow: Client 2
-- Green: Client 3
-- Grey connections: Internal client connections
-- Red connections: Cross-client connections
+The following plots compare the prediction performance and observed training time across the four approaches.
 
-![Sensor Network Topology](docs/images/sensor_network.png)
-
-## 🧠 Methodology
-
-### 1. Centralized Neural Network
-
-A single neural network is trained using data from all 36 sensors.
-
-### 2. Local-only Learning
-
-Three independent models are trained locally by separate clients, without global model aggregation.
-
-### 3. Standard FedAvg
-
-Three clients independently train local models and send model updates to a central server. The server aggregates the updates using Federated Averaging.
-
-Sensors are assigned in consecutive groups.
-
-### 4. Topology-aware FedAvg
-
-The sensor adjacency matrix is used to create connected client groups before applying Federated Averaging.
-
-This approach investigates whether preserving sensor-network structure during client assignment affects prediction performance and communication.
-
-**Note:** The prediction model is an MLP, not a Graph Neural Network. Network topology is used for client partitioning.
-
-## 📈 Experimental Results
-
-The models are evaluated using Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE).
-
-### MAE Comparison
+**Mean Absolute Error (MAE)**
 
 ![MAE Comparison](docs/images/comparison_mae.png)
 
-### RMSE Comparison
+**Root Mean Squared Error (RMSE)**
 
 ![RMSE Comparison](docs/images/comparison_rmse.png)
 
-### Training Time Comparison
+**Training Time**
 
-![Training Time Comparison](docs/images/training_time.png)
+![Training Time Comparison](docs/images/comparison_training_time.png)
 
-### Federated Training Convergence
+### Federated Learning Convergence
 
-![Federated Convergence](docs/images/convergence.png)
+The convergence plot illustrates the change in prediction error across federated communication rounds.
 
-### Communication Cost Comparison
+![Federated Convergence](docs/images/federated_convergence.png)
 
-![Communication Cost](docs/images/communication.png)
+### Communication Cost Analysis
 
-### Final Model Comparison
+This visualization compares estimated model-payload communication across the federated approaches.
 
-| Approach | MAE | RMSE | Training Time |
+![Communication Comparison](docs/images/communication_comparison.png)
+
+## 📈 Experimental Results
+
+The following results are from the implemented experiments.
+
+| Approach | MAE | RMSE | Training Time (s) |
 |---|---:|---:|---:|
-| Centralized NN | 0.028250 | 0.040177 | 21.38 s |
-| Local-only | 0.026849 | 0.038428 | 15.81 s |
-| Standard FedAvg | 0.028151 | 0.040374 | 13.79 s |
-| Topology FedAvg | 0.033065 | 0.045063 | 63.81 s |
+| Centralized NN | 0.028250 | 0.040177 | 21.38 |
+| Local-only | 0.026849 | 0.038428 | 15.81 |
+| Standard FedAvg | 0.028151 | 0.040374 | 13.79 |
+| Topology-aware FedAvg | 0.033065 | 0.045063 | 63.81 |
 
-The Local-only approach achieved the lowest MAE and RMSE in these experiments. Topology-aware FedAvg did not achieve the best prediction accuracy, highlighting the trade-offs involved in client partitioning and federated training.
+*Training times are observed execution times from the recorded runs and are not controlled hardware benchmarks.*
 
-*Training times are observed execution times from these runs and are not hardware-independent benchmarks.*
+### Key Observations
 
-## 📡 Communication Cost Analysis
+- Local-only learning achieved the lowest MAE and RMSE among the evaluated approaches.
+- Standard FedAvg achieved prediction errors close to the centralized model.
+- Topology-aware FedAvg produced higher prediction errors in the current experiment.
+- Topology-aware partitioning successfully grouped connected sensors, but this did not translate into improved prediction accuracy in the current configuration.
+- Further experiments are needed to understand the effects of client partitioning, local training, and aggregation.
 
-Both federated experiments use the following configuration:
+These findings demonstrate that federated learning performance depends on more than the choice of aggregation algorithm.
+
+## 📡 Communication Cost Evaluation
+
+Communication cost is estimated using the model parameter payload exchanged during federated training.
+
+For each communication round:
+
+\[
+C_{\text{round}} = 2 \times N_{\text{clients}} \times S_{\text{model}}
+\]
+
+Where:
+
+- \(N_{\text{clients}}\) = Number of federated clients.
+- \(S_{\text{model}}\) = Serialized model size in bytes.
+- Factor 2 accounts for model distribution and model-update return.
+
+For the implemented configuration:
 
 | Parameter | Value |
 |---|---:|
 | Federated clients | 3 |
 | Communication rounds | 10 |
 | Estimated communication per round | 176,664 bytes |
-| Estimated cumulative communication | 1,766,640 bytes |
+| Total estimated communication | 1,766,640 bytes |
+| Total estimated communication | Approximately 1.69 MiB |
 
-Communication is estimated from model-payload exchange. These figures exclude network protocol overhead and are not measurements from an actual distributed network deployment.
+Both standard FedAvg and topology-aware FedAvg use the same model architecture, number of clients, and communication rounds. Therefore, their estimated model-payload communication is identical in this experiment.
 
-## 🛠️ Technology Stack
+**Note:** These figures represent estimated model-payload communication, not measured network traffic. Protocol overhead, encryption, retransmissions, and other network costs are not included.
 
-| Technology | Purpose |
-|---|---|
-| Python | Core implementation |
-| PyTorch | Neural network training |
-| NumPy | Numerical operations |
-| SciPy | MATLAB dataset loading |
-| Pandas | Data handling and analysis |
-| Matplotlib | Experimental graphs |
-| Streamlit | Interactive dashboard |
-| Plotly | Interactive charts |
-| NetworkX | Sensor network visualization |
+## 🗂️ Repository Structure
 
-## ▶️ Run the Project Locally
+```text
+A3-PS003-TC141/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+│
+├── data/
+│   ├── raw/
+│   │   ├── traffic_dataset.mat
+│   │   └── Traffic Flow Prediction Dataset.docx
+│   │
+│   └── processed/
+│       ├── X_train.csv
+│       ├── X_test.csv
+│       ├── y_train.csv
+│       ├── y_test.csv
+│       └── adjacency.csv
+│
+├── docs/
+│   └── images/
+│       ├── Dashboard_overview.png
+│       ├── sensor_network.png
+│       ├── communication_comparison.png
+│       ├── comparison_mae.png
+│       ├── comparison_rmse.png
+│       ├── comparison_training_time.png
+│       └── federated_convergence.png
+│
+├── results/
+│   ├── final_analysis/
+│   ├── comparison_plots/
+│   ├── topology_fedavg/
+│   ├── sensor_partition.json
+│   ├── centralized_neural_network.json
+│   ├── local_only_results.json
+│   └── fedavg_results.json
+│
+└── src/
+    ├── baselines/
+    │   ├── centralized_neural_network.py
+    │   └── local_only.py
+    │
+    ├── data/
+    │   ├── load_dataset.py
+    │   ├── convert_to_csv.py
+    │   ├── inspect_dataset.py
+    │   └── other dataset utilities
+    │
+    ├── federated/
+    │   ├── fedavg.py
+    │   ├── partition_sensors.py
+    │   └── topology_fedavg.py
+    │
+    ├── models/
+    │   └── traffic_model.py
+    │
+    └── visualization/
+        ├── compare_experiments.py
+        ├── final_experiment_analysis.py
+        └── plot_sensor_network.py
+```
+
+## ⚙️ Technologies Used
+
+- **Python** — Main programming language.
+- **PyTorch** — Neural network implementation and training.
+- **NumPy** — Numerical computations and dataset processing.
+- **SciPy** — MATLAB `.mat` dataset loading.
+- **Pandas** — Data processing and result analysis.
+- **Matplotlib** — Experiment visualization.
+- **Streamlit** — Interactive dashboard.
+- **Plotly** — Interactive charts.
+- **NetworkX** — Sensor network graph visualization.
+- **Git and GitHub** — Version control and project collaboration.
+
+## 🚀 Installation and Execution
 
 ### 1. Clone the repository
 
@@ -169,19 +261,27 @@ cd A3-PS003-TC141
 python -m venv .venv
 ```
 
-### 3. Activate the environment
-
-Windows PowerShell:
+Activate it on Windows:
 
 ```powershell
-.venv\Scripts\Activate.ps1
+.venv\Scripts\activate
 ```
 
-### 4. Install dependencies
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
+
+### 4. Verify the dataset
+
+Ensure the original dataset is available at:
+
+```text
+data/raw/traffic_dataset.mat
+```
+
+The dataset loader and experiment scripts expect the project directory structure shown above.
 
 ### 5. Launch the dashboard
 
@@ -189,72 +289,86 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Open the local address displayed in the terminal, usually:
-
-`http://localhost:8501`
-
-## 📁 Project Structure
+The dashboard will be available locally, typically at:
 
 ```text
-A3-PS003-TC141/
-│
-├── app.py
-│
-├── data/
-│   └── raw/
-│
-├── docs/
-│   └── images/
-│       ├── dashboard_overview.png
-│       ├── sensor_network.png
-│       ├── comparison_mae.png
-│       ├── comparison_rmse.png
-│       ├── training_time.png
-│       ├── convergence.png
-│       └── communication.png
-│
-├── results/
-│   ├── final_analysis/
-│   ├── topology_fedavg/
-│   └── sensor_partition.json
-│
-├── src/
-│   ├── baselines/
-│   ├── data/
-│   ├── federated/
-│   ├── models/
-│   └── visualization/
-│
-├── requirements.txt
-└── README.md
+http://localhost:8501
 ```
 
-## ⚠️ Limitations
+## 🔬 Reproducing the Experiments
 
-- Experiments are conducted in a simulated federated-learning environment.
-- Communication cost is estimated from model-payload sizes rather than measured over a real network.
-- Topology-aware partitioning uses adjacency information; the prediction model itself does not perform graph-based learning.
-- Differential privacy and secure aggregation are not implemented.
-- Training-time measurements depend on the execution environment.
+The following scripts are available for running the experiments:
+
+**Centralized Neural Network**
+
+```bash
+python -m src.baselines.centralized_neural_network
+```
+
+**Local-only Learning**
+
+```bash
+python -m src.baselines.local_only
+```
+
+**Standard FedAvg**
+
+```bash
+python -m src.federated.fedavg
+```
+
+**Sensor Partitioning**
+
+```bash
+python -m src.federated.partition_sensors
+```
+
+**Topology-aware FedAvg**
+
+```bash
+python -m src.federated.topology_fedavg
+```
+
+**Final Experiment Analysis**
+
+```bash
+python -m src.visualization.final_experiment_analysis
+```
+
+Run experiments in the appropriate order so that their required result files and sensor partition are available.
+
+## ⚠️ Limitations and Future Scope
+
+The current implementation is an experimental software prototype. The following areas can be explored further:
+
+- Testing different numbers of federated clients.
+- Evaluating alternative sensor partitioning strategies.
+- Experimenting with different neural network architectures.
+- Investigating communication-efficient aggregation methods.
+- Measuring actual network traffic in a distributed deployment.
+- Exploring privacy-enhancing techniques such as secure aggregation and differential privacy.
+- Evaluating performance under changing traffic conditions and client availability.
 
 ## 👥 Team RESONANCE
 
-**Hackathon:** AIORI-3
+**AIORI 3 Hackathon**
 
-**Problem Statement:** PS-003 — Federated Traffic-Flow Prediction with Communication-Cost Evaluation
+**Problem Statement:** PS-003 — Federated Traffic-Flow Prediction with Communication-Cost Evaluation.
 
-### 🎥 Team Introduction Video
+**Team Name:** RESONANCE
 
-[▶ Watch our team introduction video](https://youtu.be/FC3wcykLklc)
+**Team Introduction Video:** [Watch our team introduction video](https://www.youtube.com/)
 
-### 🔗 Project Repository
+## 🔗 Project Repository
 
 [GitHub — A3-PS003-TC141](https://github.com/aiori-hackathon/A3-PS003-TC141)
 
 ---
 
 <p align="center">
-  <b>AIORI-3 Hackathon | Team RESONANCE</b>
-  <br/>
-  Federated Traffic Intelligence
+
+**RESONANCE — Exploring the Future of Federated Traffic Intelligence**
+
+*AIORI 3 Hackathon · PS-003*
+
 </p>
