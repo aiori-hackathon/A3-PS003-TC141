@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.vscode/
+traffic+flow+forecasting-1.zip
+.venv/
+__pycache__/
+*.py[cod]
+.vscode/
+traffic+flow+forecasting-1.zip
+data/
+traffic+flow+forecasting-1/

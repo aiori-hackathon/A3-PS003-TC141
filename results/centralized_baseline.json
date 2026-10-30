@@ -1,0 +1,14 @@
+[
+  {
+    "model": "Mean baseline",
+    "mae": 0.1704662049330794,
+    "rmse": 0.20518797970453767,
+    "training_seconds": 0.01
+  },
+  {
+    "model": "Random Forest",
+    "mae": 0.025312678005903606,
+    "rmse": 0.03797737485247503,
+    "training_seconds": 3.45
+  }
+]
