@@ -15,7 +15,7 @@ from src.models.traffic_model import TrafficModel
 
 SEED = 42
 BATCH_SIZE = 256
-EPOCHS = 30
+EPOCHS = 20
 LEARNING_RATE = 0.001
 
 

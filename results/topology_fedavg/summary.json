@@ -1,0 +1,73 @@
+{
+  "experiment": "Topology-Aware FedAvg",
+  "clients": 3,
+  "rounds": 10,
+  "local_epochs": 2,
+  "sensor_partition": [
+    {
+      "client_id": 1,
+      "sensors": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "sensor_count": 12,
+      "internal_edges": 11,
+      "connected": true
+    },
+    {
+      "client_id": 2,
+      "sensors": [
+        4,
+        5,
+        6,
+        7,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        26
+      ],
+      "sensor_count": 12,
+      "internal_edges": 11,
+      "connected": true
+    },
+    {
+      "client_id": 3,
+      "sensors": [
+        0,
+        1,
+        2,
+        3,
+        22,
+        23,
+        24,
+        25,
+        27,
+        28,
+        29,
+        35
+      ],
+      "sensor_count": 12,
+      "internal_edges": 13,
+      "connected": true
+    }
+  ],
+  "cross_client_edges": 8,
+  "final_mae": 0.03306523337960243,
+  "final_rmse": 0.045062702171061314,
+  "total_communication_bytes": 1766640,
+  "total_training_seconds": 63.81
+}

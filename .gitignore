@@ -1,12 +1,25 @@
+
+# Python virtual environment
 .venv/
+
+# Python cache
 __pycache__/
 *.py[cod]
+*.pyo
+
+# IDE settings
 .vscode/
+
+# Downloaded dataset archive
 traffic+flow+forecasting-1.zip
-.venv/
-__pycache__/
-*.py[cod]
-.vscode/
-traffic+flow+forecasting-1.zip
-data/
+
+# Temporary files
+*.log
+.DS_Store
+Thumbs.db
+
+# Generated processed dataset files
+data/processed/
+
+# Extracted download folder
 traffic+flow+forecasting-1/

@@ -1,0 +1,44 @@
+{
+  "model": "Independent Local Models",
+  "clients": 3,
+  "epochs_per_client": 20,
+  "overall_mae": 0.026848718267043565,
+  "overall_rmse": 0.038427987148843934,
+  "total_training_seconds": 15.81,
+  "client_results": [
+    {
+      "client": 1,
+      "sensors": [
+        8,
+        34
+      ],
+      "mae": 0.028001846745610237,
+      "rmse": 0.03906825440460446,
+      "training_seconds": 5.2,
+      "training_examples": 15132
+    },
+    {
+      "client": 2,
+      "sensors": [
+        4,
+        26
+      ],
+      "mae": 0.026729511097073555,
+      "rmse": 0.039328499455861206,
+      "training_seconds": 5.13,
+      "training_examples": 15132
+    },
+    {
+      "client": 3,
+      "sensors": [
+        0,
+        35
+      ],
+      "mae": 0.02581479586660862,
+      "rmse": 0.03683844755253428,
+      "training_seconds": 5.48,
+      "training_examples": 15132
+    }
+  ],
+  "seed": 42
+}

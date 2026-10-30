@@ -1,8 +1,8 @@
 {
   "model": "Centralized Neural Network",
-  "mae": 0.0272910688072443,
-  "rmse": 0.038418535648714995,
-  "training_seconds": 23.07,
-  "epochs": 30,
+  "mae": 0.028250472620129585,
+  "rmse": 0.040176900128059446,
+  "training_seconds": 21.38,
+  "epochs": 20,
   "seed": 42
 }

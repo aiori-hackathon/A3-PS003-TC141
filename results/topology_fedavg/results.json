@@ -1,0 +1,92 @@
+[
+  {
+    "round": 1,
+    "mae": 0.05880254507064819,
+    "rmse": 0.08275725753369069,
+    "mean_local_loss": 0.004757160853737904,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 176664,
+    "training_seconds": 15.33
+  },
+  {
+    "round": 2,
+    "mae": 0.04494011029601097,
+    "rmse": 0.06045648149113587,
+    "mean_local_loss": 0.002082219517082652,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 353328,
+    "training_seconds": 5.4
+  },
+  {
+    "round": 3,
+    "mae": 0.04399031773209572,
+    "rmse": 0.05902913578873413,
+    "mean_local_loss": 0.0017767926143201346,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 529992,
+    "training_seconds": 5.46
+  },
+  {
+    "round": 4,
+    "mae": 0.041951436549425125,
+    "rmse": 0.056266937255652474,
+    "mean_local_loss": 0.0016715249979534295,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 706656,
+    "training_seconds": 5.33
+  },
+  {
+    "round": 5,
+    "mae": 0.03776128962635994,
+    "rmse": 0.05127126827022247,
+    "mean_local_loss": 0.0015510047920683726,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 883320,
+    "training_seconds": 6.15
+  },
+  {
+    "round": 6,
+    "mae": 0.03698788583278656,
+    "rmse": 0.05011222592172656,
+    "mean_local_loss": 0.0014858648487012145,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 1059984,
+    "training_seconds": 5.33
+  },
+  {
+    "round": 7,
+    "mae": 0.03486001864075661,
+    "rmse": 0.04774233945155382,
+    "mean_local_loss": 0.0014613358094718025,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 1236648,
+    "training_seconds": 5.35
+  },
+  {
+    "round": 8,
+    "mae": 0.033694446086883545,
+    "rmse": 0.046400534931351385,
+    "mean_local_loss": 0.001404889893355924,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 1413312,
+    "training_seconds": 5.0
+  },
+  {
+    "round": 9,
+    "mae": 0.03362580016255379,
+    "rmse": 0.04593509366908218,
+    "mean_local_loss": 0.001385996647226764,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 1589976,
+    "training_seconds": 5.39
+  },
+  {
+    "round": 10,
+    "mae": 0.03306523337960243,
+    "rmse": 0.045062702171061314,
+    "mean_local_loss": 0.0013628672252571476,
+    "round_communication_bytes": 176664,
+    "cumulative_communication_bytes": 1766640,
+    "training_seconds": 5.07
+  }
+]
