@@ -363,11 +363,18 @@ The current implementation is an experimental software prototype. The following 
 
 [GitHub — A3-PS003-TC141](https://github.com/aiori-hackathon/A3-PS003-TC141)
 
+
+## 🚀 Live Dashboard
+
+[**Open Team RESONANCE – Traffic Flow Dashboard**](https://resonance-traffic-dashboard.onrender.com/)
+
 ---
 
 <p align="center">
 
 **RESONANCE — Exploring the Future of Federated Traffic Intelligence**
+
+
 
 *AIORI 3 Hackathon · PS-003*
 
