@@ -357,7 +357,7 @@ The current implementation is an experimental software prototype. The following 
 
 **Team Name:** RESONANCE
 
-**Team Introduction Video:** [Watch our team introduction video]([https://www.youtube.com/](https://youtu.be/FC3wcykLklc?si=UXl17bS7FCRu-q75))
+**Team Introduction Video:** [Watch our team introduction video](https://youtu.be/FC3wcykLklc)
 
 ## 🔗 Project Repository
 
